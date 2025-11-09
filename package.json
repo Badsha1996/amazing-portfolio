@@ -1,0 +1,20 @@
+{
+  "name": "amazing-portfolio",
+  "version": "1.0.0",
+  "description": "This is an awesome portfolio UI design using vanila JS, css and HTML",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {},
+  "keywords": [
+    "Portfolio",
+    "CV",
+    "Frontend",
+    "Javascript",
+    "vanila",
+    "UI",
+    "CSS"
+  ],
+  "author": "Badsha Laskar",
+  "license": "ISC",
+  "packageManager": "pnpm@10.7.0"
+}
