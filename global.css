@@ -3,9 +3,20 @@
                 1. GLOBAL 
                 2. BACKGROUND
                 3. MAIN
+                4. HERO SECTION
 =============================================*/
 :root {
   /* VARIABLES  */
+  --gray-100: rgb(199, 199, 199);
+  --gray-200: rgb(161, 161, 161);
+
+  --blue-100: rgb(91, 222, 255);
+  --blue-200: rgb(0, 204, 255);
+
+  --orange-100: rgb(255, 189, 74);
+  --orange-200: rgb(255, 64, 0);
+
+  --violet-100: rgb(174, 0, 255);
 }
 
 *,
@@ -42,6 +53,7 @@ canvas#bg {
 main {
   position: relative;
   z-index: 10;
+  background: linear-gradient(rgba(14, 14, 14, 0.5), rgba(0, 0, 0, 0.3));
 }
 
 section {
@@ -51,4 +63,144 @@ section {
   justify-content: center;
   font-size: 1.5rem;
   padding: 2em;
+}
+
+/* ==========================================
+                4. HERO SECTION
+=============================================*/
+.hero_sec {
+  display: flex;
+}
+
+.hero_sec_arrow {
+  height: 20rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .line {
+    background-color: var(--gray-100);
+    height: 20rem;
+    width: 0.2rem;
+  }
+  i {
+    color: var(--gray-100);
+  }
+}
+.hero_sec_content {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero_sec_title_wrapper {
+  width: 100%;
+  padding: 0.5em 2em;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+}
+
+.hero_sec_design_top,
+.hero_sec_design_bottom {
+  width: 100%;
+  padding: 0em 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.first_row {
+  display: flex;
+  gap: 1rem;
+}
+
+.first_row > div:nth-child(1) {
+  height: 1rem;
+  width: 10rem;
+  background: linear-gradient(120deg, var(--blue-100), var(--violet-100));
+}
+.hero_sec_design_bottom > .first_row > div:nth-child(1) {
+  width: 25rem;
+  background: linear-gradient(120deg, var(--orange-100), var(--orange-200));
+}
+
+.hero_sec_design_bottom > .first_row > div:nth-child(2) {
+  display: none;
+}
+
+.first_row > div:nth-child(2) {
+  height: 1rem;
+  width: 5rem;
+  background: var(--gray-200);
+}
+
+.first_row > div:nth-child(3) {
+  height: 1rem;
+  width: 1rem;
+  background: var(--gray-200);
+  border-radius: 50%;
+}
+
+.second_row {
+  display: flex;
+  gap: 1rem;
+}
+
+.second_row > div:nth-child(1) {
+  height: 1rem;
+  width: 17rem;
+  background: linear-gradient(120deg, var(--blue-100), var(--violet-100));
+}
+
+.third_row {
+  display: flex;
+  gap: 1rem;
+}
+
+.third_row > div:nth-child(1) {
+  height: 1rem;
+  width: 6rem;
+  background: linear-gradient(120deg, var(--orange-100), var(--violet-100));
+}
+.hero_sec_design_bottom > .third_row > div:nth-child(1) {
+  background: linear-gradient(120deg, var(--blue-100), var(--violet-100));
+}
+
+.third_row > div:nth-child(2) {
+  height: 1rem;
+  width: 1rem;
+  background: var(--gray-200);
+}
+
+.third_row > div:nth-child(3) {
+  height: 1rem;
+  width: 1rem;
+  background: var(--gray-200);
+  border-radius: 50%;
+}
+.hero_sec_design_bottom > .third_row > div:nth-child(3) {
+  display: none;
+}
+.third_row > div:nth-child(4) {
+  height: 1rem;
+  width: 10rem;
+  background: linear-gradient(45deg, var(--violet-100), var(--blue-200));
+}
+
+.hero_sec_design_bottom > .third_row > div:nth-child(4) {
+  background: linear-gradient(45deg, var(--orange-200), var(--orange-100));
+}
+
+.hero_sec_title {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.hero_sec_subtitle > span:last-child {
+  font-style: italic;
+  color: greenyellow;
+  font-weight: 600;
 }
