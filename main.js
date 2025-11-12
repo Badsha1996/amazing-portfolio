@@ -89,3 +89,44 @@ function animate() {
 
   renderer.render(scene, camera);
 }
+
+// ========================== TYPING ANIMATION =========================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const typingText = document.getElementById("typing-text");
+
+  const roles = [
+    { text: "ML Engineer", color: "rgb(173, 255, 47)" },
+    { text: "Software Developer", color: "#ff6b6b" },
+    { text: "Mobile Developer", color: "#4ecdc4" },
+    { text: "Problem Solver", color: "#ffd93d" },
+  ];
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 120;
+
+  function type() {
+    const currentRole = roles[roleIndex];
+    typingText.style.color = currentRole.color;
+
+    const displayedText = isDeleting
+      ? currentRole.text.substring(0, charIndex--)
+      : currentRole.text.substring(0, charIndex++);
+
+    typingText.textContent = displayedText;
+
+    if (!isDeleting && charIndex === currentRole.text.length) {
+      setTimeout(() => (isDeleting = true), 1500);
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+    }
+
+    const delay = isDeleting ? typingSpeed / 2 : typingSpeed;
+    setTimeout(type, delay);
+  }
+
+  type();
+});

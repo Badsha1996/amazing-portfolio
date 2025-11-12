@@ -17,6 +17,7 @@
   --orange-200: rgb(255, 64, 0);
 
   --violet-100: rgb(174, 0, 255);
+  --greenYellow-100: rgb(173, 255, 47);
 }
 
 *,
@@ -73,18 +74,21 @@ section {
 }
 
 .hero_sec_arrow {
-  height: 20rem;
+  height: 25rem;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: fadeIn 2s ease-in-out;
   .line {
     background-color: var(--gray-100);
-    height: 20rem;
+    height: 25rem;
     width: 0.2rem;
+    animation: bounceArrow 1.8s infinite ease-in-out;
   }
   i {
     color: var(--gray-100);
+    animation: bounceArrow 1.8s infinite ease-in-out;
   }
 }
 .hero_sec_content {
@@ -201,6 +205,81 @@ section {
 
 .hero_sec_subtitle > span:last-child {
   font-style: italic;
-  color: greenyellow;
+  color: var(--greenYellow-100);
   font-weight: 600;
+}
+
+.typing::after {
+  content: "|";
+  margin-left: 4px;
+  animation: blink 0.7s infinite;
+}
+
+.hero_sec_socials {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.hero_sec_socials a {
+  color: var(--gray-100);
+  font-size: 1.2rem;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.hero_sec_socials a:hover {
+  color: var(--blue-200);
+  transform: scale(1.2);
+}
+
+.hero_sec_contact {
+  color: var(--gray-100);
+  font-size: 1rem;
+  line-height: 1.6;
+  display: flex;
+  background-color: red;
+}
+
+.hero_sec_contact p {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.2rem 0;
+}
+
+.hero_sec_contact i {
+  color: var(--blue-200);
+  font-size: 1.1rem;
+}
+
+/* ==========================================
+                ANIMATIONS
+=============================================*/
+@keyframes bounceArrow {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+/* Optional: smooth appearance on load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
