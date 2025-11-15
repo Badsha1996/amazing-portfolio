@@ -37,6 +37,10 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  text-decoration: none;
+  color: aqua;
+}
 /* ==========================================
                 2. BACKGROUND MODEL
 =============================================*/
@@ -354,11 +358,23 @@ section {
   gap: 1rem;
 }
 
-.work-1 > span {
+.work-1 > span,
+.work-2 > span {
   font-size: 1.7rem;
   font-weight: 550;
   cursor: pointer;
   transition: all 0.3s ease-in;
+}
+
+.work-1 > i,
+.work-2 > i {
+  color: aqua;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.work-1 > a,
+.work-2 > a {
+  animation: blink 1.5s infinite ease-in-out;
 }
 .work_desc {
   font-size: 1rem;
@@ -366,9 +382,25 @@ section {
   color: var(--gray-100);
   cursor: pointer;
 }
+.work_tags {
+  margin: 1em 0em;
+  font-size: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3em;
+  width: 64vw;
+  align-items: center;
+}
 
-.work-1:hover {
-  /* color: red; */
+.work_tags > span {
+  background: var(--blue-200);
+  padding: 0.2em 0.4em;
+  border-radius: 2rem;
+  width: max-content;
+}
+
+.work-1:hover,
+.work-2:hover {
   color: white;
 }
 
@@ -377,26 +409,28 @@ section {
   overflow: hidden;
   padding: 0.5em;
   border-radius: 1.2rem;
+  width: 85vw;
 }
 
-.work-1-img {
+.work-1-img,
+.work-2-img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
-  object-fit: contain;
+  object-fit: cover;
 
   filter: brightness(0.3) blur(1rem);
-  scale: 1;
+  scale: 1.2;
   opacity: 0;
-
   transition: all 1s ease;
 }
 
-.work-1:hover + .work-1-img {
+.work-1:hover + .work-1-img,
+.work-2:hover + .work-2-img {
   opacity: 1;
-  scale: 1.17;
+  scale: 1;
   filter: brightness(0.5) blur(0.1rem);
 }
