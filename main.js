@@ -130,3 +130,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   type();
 });
+
+// ========================== ANIMTION LOAD FOR HERO SECTION ===========================
+window.addEventListener("load", () => {
+  const topDesign = document.querySelector(".hero_sec_design_top");
+  const bottomDesign = document.querySelector(".hero_sec_design_bottom");
+
+  // Add the animation classes with small delays
+  setTimeout(() => {
+    topDesign.classList.add("animate-in");
+  }, 300); // after 0.3s
+
+  setTimeout(() => {
+    bottomDesign.classList.add("animate-in");
+  }, 600); // after 0.6s
+});

@@ -198,6 +198,22 @@ section {
   background: linear-gradient(45deg, var(--orange-200), var(--orange-100));
 }
 
+/* ==========================
+   ON-LOAD HERO ANIMATIONS
+===========================*/
+.hero_sec_design_top,
+.hero_sec_design_bottom {
+  opacity: 0;
+}
+
+.hero_sec_design_top.animate-in {
+  animation: slideInTop 1.2s ease-out forwards;
+}
+
+.hero_sec_design_bottom.animate-in {
+  animation: slideInBottom 1.2s ease-out forwards;
+}
+
 .hero_sec_title {
   font-size: 3.5rem;
   font-weight: 600;
@@ -267,7 +283,6 @@ section {
   }
 }
 
-/* Optional: smooth appearance on load */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -281,5 +296,26 @@ section {
 @keyframes blink {
   50% {
     opacity: 0;
+  }
+}
+@keyframes slideInTop {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInBottom {
+  from {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
