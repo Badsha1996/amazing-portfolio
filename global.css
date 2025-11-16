@@ -5,6 +5,8 @@
                 3. MAIN
                 4. HERO SECTION
                 5. WORK
+                6. CLIENTS
+                7. ABOUT
 =============================================*/
 :root {
   /* VARIABLES  */
@@ -63,7 +65,7 @@ main {
 }
 
 section {
-  min-height: 100vh;
+  min-height: max-content;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,6 +79,7 @@ section {
 =============================================*/
 .hero_sec {
   display: flex;
+  min-height: 100vh;
 }
 
 .hero_sec_arrow {
@@ -433,4 +436,103 @@ section {
   opacity: 1;
   scale: 1;
   filter: brightness(0.5) blur(0.1rem);
+}
+
+/* ==========================================
+                6. CLIENTS
+=============================================*/
+.clients_sec {
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.clients_sec_title {
+  font-size: xx-large;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  div {
+    height: 1.3rem;
+    width: 1.3rem;
+    margin-left: 0.1em;
+    border-radius: 50%;
+    background: linear-gradient(35deg, var(--orange-100), aqua);
+  }
+}
+
+.clients_caraousal {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.caraousal_track {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: scroll 18s linear infinite;
+}
+
+.clients_logo img {
+  height: 7rem;
+  filter: grayscale(80%) brightness(0.8);
+  border-radius: 1rem;
+  scale: 1;
+  transition: all 0.4s ease;
+}
+
+.clients_logo img:hover {
+  filter: grayscale(0%) brightness(1);
+  scale: 1.05;
+}
+
+.clients_caraousal:hover .caraousal_track {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ==========================================
+                7. ABOUT
+=============================================*/
+
+.about_sec {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.about_sec_title {
+  font-size: xx-large;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  div {
+    height: 1.3rem;
+    width: 1.3rem;
+    margin-left: 0.1em;
+    border-radius: 50%;
+    background: linear-gradient(35deg, var(--blue-100), var(--orange-100));
+  }
+}
+
+.about_sec_main {
+  display: flex;
+  gap: 1rem;
 }
