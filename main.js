@@ -145,3 +145,5 @@ window.addEventListener("load", () => {
     bottomDesign.classList.add("animate-in");
   }, 600); // after 0.6s
 });
+
+

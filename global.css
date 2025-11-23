@@ -7,6 +7,7 @@
                 5. WORK
                 6. CLIENTS
                 7. ABOUT
+                8. END
 =============================================*/
 :root {
   /* VARIABLES  */
@@ -438,6 +439,25 @@ section {
   filter: brightness(0.5) blur(0.1rem);
 }
 
+.work_sec_arrow {
+  height: 48rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 2s ease-in-out;
+  .line {
+    background-color: var(--gray-100);
+    height: 50rem;
+    width: 0.2rem;
+    animation: bounceArrow 1.8s infinite ease-in-out;
+  }
+  i {
+    color: var(--gray-100);
+    animation: bounceArrow 1.8s infinite ease-in-out;
+  }
+}
+
 /* ==========================================
                 6. CLIENTS
 =============================================*/
@@ -535,4 +555,70 @@ section {
 .about_sec_main {
   display: flex;
   gap: 1rem;
+}
+
+.about_content {
+  max-width: 55rem;
+  font-size: 1.3rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1.5em;
+  border-radius: 1rem;
+}
+
+.about_content_title {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.about_content_desc {
+  padding: 0.5em 0em;
+}
+
+li {
+  list-style: none;
+}
+
+.about_content_core {
+  color: var(--gray-100);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.list_tech {
+  color: var(--gray-200);
+  margin-left: 0.4em;
+}
+
+.about_sec_arrow {
+  height: 39rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 2s ease-in-out;
+  .line {
+    background-color: var(--gray-100);
+    height: 50rem;
+    width: 0.2rem;
+    animation: bounceArrow 1.8s infinite ease-in-out;
+  }
+  i {
+    color: var(--gray-100);
+    animation: bounceArrow 1.8s infinite ease-in-out;
+  }
+}
+/* ==========================================
+                8. END
+=============================================*/
+.end_sec {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 0.2em;
+  border-top: 1px solid var(--greenYellow-100);
+}
+.download > i {
+  color: var(--greenYellow-100);
+  cursor: pointer;
+  animation: bounceArrow 1.8s infinite ease-in-out;
 }
