@@ -63,7 +63,7 @@ function initiate_model() {
     60,
     window.innerWidth / window.innerHeight,
     0.1,
-    1000
+    1000,
   );
 
   // Initial position based on screen width
@@ -196,16 +196,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Tabs logic
-  tabBtns.forEach(btn => {
+  tabBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       const targetTab = btn.getAttribute("data-tab");
 
       // Active button toggle
-      tabBtns.forEach(b => b.classList.remove("active"));
+      tabBtns.forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
 
       // Active tab content panel toggle
-      tabContents.forEach(content => {
+      tabContents.forEach((content) => {
         content.classList.remove("active");
         if (content.id === `tab-${targetTab}`) {
           content.classList.add("active");
@@ -215,17 +215,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Fallback for browsers that do not support native closedby="any" (like Safari)
-  if (resumeModal && !('closedBy' in HTMLDialogElement.prototype)) {
+  if (resumeModal && !("closedBy" in HTMLDialogElement.prototype)) {
     resumeModal.addEventListener("click", (event) => {
       // If the clicked target is the dialog overlay element itself
       if (event.target === resumeModal) {
         const rect = resumeModal.getBoundingClientRect();
-        const isClickedInside = (
+        const isClickedInside =
           rect.top <= event.clientY &&
           event.clientY <= rect.top + rect.height &&
           rect.left <= event.clientX &&
-          event.clientX <= rect.left + rect.width
-        );
+          event.clientX <= rect.left + rect.width;
 
         if (!isClickedInside) {
           resumeModal.close();
@@ -234,5 +233,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-

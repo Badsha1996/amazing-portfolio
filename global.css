@@ -251,7 +251,9 @@ section {
 .hero_sec_socials a {
   color: var(--gray-100);
   font-size: 1.2rem;
-  transition: color 0.3s ease, transform 0.2s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .hero_sec_socials a:hover {
@@ -642,7 +644,9 @@ li {
   cursor: pointer;
   font-size: 2rem;
   animation: bounceArrow 1.8s infinite ease-in-out;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
 }
 
 .download > a > i:hover {
@@ -659,7 +663,9 @@ li {
   padding: 0;
   animation: bounceArrow 1.8s infinite ease-in-out;
   animation-delay: 0.9s;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
 }
 
 .resume_btn:hover {
@@ -685,7 +691,7 @@ dialog#resumeModal {
   background: rgba(15, 15, 15, 0.75);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
-  box-shadow: 
+  box-shadow:
     0 20px 50px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(255, 255, 255, 0.08),
     0 0 20px rgba(0, 204, 255, 0.1);
@@ -722,7 +728,7 @@ dialog#resumeModal::backdrop {
   background-color: rgba(0, 0, 0, 0);
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(0px);
-  transition: 
+  transition:
     display 0.35s allow-discrete,
     overlay 0.35s allow-discrete,
     background-color 0.35s ease-out,
@@ -937,7 +943,7 @@ dialog#resumeModal[open]::backdrop {
 }
 
 .timeline::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0.2rem;
   top: 0.5rem;
@@ -951,7 +957,7 @@ dialog#resumeModal[open]::backdrop {
 }
 
 .timeline_item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: calc(-1.5rem - 0.15rem);
   top: 0.5rem;
@@ -1159,12 +1165,24 @@ dialog#resumeModal[open]::backdrop {
     padding: 0;
   }
 
-  .first_row > div:nth-child(1) { width: 45vw; }
-  .hero_sec_design_bottom > .first_row > div:nth-child(1) { width: 55vw; }
-  .first_row > div:nth-child(2) { width: 15vw; }
-  .second_row > div:nth-child(1) { width: 60vw; }
-  .third_row > div:nth-child(1) { width: 25vw; }
-  .third_row > div:nth-child(4) { width: 35vw; }
+  .first_row > div:nth-child(1) {
+    width: 45vw;
+  }
+  .hero_sec_design_bottom > .first_row > div:nth-child(1) {
+    width: 55vw;
+  }
+  .first_row > div:nth-child(2) {
+    width: 15vw;
+  }
+  .second_row > div:nth-child(1) {
+    width: 60vw;
+  }
+  .third_row > div:nth-child(1) {
+    width: 25vw;
+  }
+  .third_row > div:nth-child(4) {
+    width: 35vw;
+  }
 
   /* Work Section */
   .work_sec_main {
@@ -1182,7 +1200,7 @@ dialog#resumeModal[open]::backdrop {
     display: block;
     margin-top: 1rem;
   }
-  
+
   .work_desc {
     max-width: 100%;
     margin-top: 0.5rem;
@@ -1309,4 +1327,3 @@ dialog#resumeModal[open]::backdrop {
     gap: 0.8rem;
   }
 }
-
