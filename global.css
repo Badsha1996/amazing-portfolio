@@ -616,9 +616,696 @@ li {
   gap: 2rem;
   margin-bottom: 0.2em;
   border-top: 1px solid var(--greenYellow-100);
+  padding-top: 2em;
 }
+
+.end_actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  width: 100%;
+}
+
+.download,
+.view_resume {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.download > a > i,
 .download > i {
   color: var(--greenYellow-100);
   cursor: pointer;
+  font-size: 2rem;
   animation: bounceArrow 1.8s infinite ease-in-out;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
+
+.download > a > i:hover {
+  transform: scale(1.15);
+  color: white;
+}
+
+.resume_btn {
+  background: none;
+  border: none;
+  color: var(--blue-200);
+  cursor: pointer;
+  font-size: 2rem;
+  padding: 0;
+  animation: bounceArrow 1.8s infinite ease-in-out;
+  animation-delay: 0.9s;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.resume_btn:hover {
+  transform: scale(1.15);
+  color: white;
+}
+
+.down_btn,
+.view_btn_lbl {
+  font-size: 1.1rem;
+  color: var(--gray-100);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+/* ==========================================
+            9. RESUME MODAL OVERLAY
+=============================================*/
+dialog#resumeModal {
+  border: none;
+  border-radius: 1.5rem;
+  background: rgba(15, 15, 15, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 20px rgba(0, 204, 255, 0.1);
+  color: white;
+  padding: 0;
+  max-width: 800px;
+  width: 90%;
+  max-height: 85vh;
+  margin: auto;
+  overflow: hidden;
+  font-family: inherit;
+
+  /* Entry/Exit top-layer transitions */
+  opacity: 0;
+  transform: scale(0.92) translateY(20px);
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.35s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-behavior: allow-discrete;
+}
+
+dialog#resumeModal[open] {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.92) translateY(20px);
+  }
+}
+
+/* Backdrop styles */
+dialog#resumeModal::backdrop {
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  transition: 
+    display 0.35s allow-discrete,
+    overlay 0.35s allow-discrete,
+    background-color 0.35s ease-out,
+    backdrop-filter 0.35s ease-out;
+}
+
+dialog#resumeModal[open]::backdrop {
+  background-color: rgba(5, 5, 5, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  @starting-style {
+    background-color: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  dialog#resumeModal {
+    transform: none !important;
+    transition-duration: 0.15s !important;
+  }
+  dialog#resumeModal[open] {
+    @starting-style {
+      transform: none !important;
+    }
+  }
+}
+
+.modal_container {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  max-height: 85vh;
+}
+
+.modal_header {
+  padding: 1.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: rgba(10, 10, 10, 0.4);
+}
+
+.modal_header_title h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, white, var(--gray-100));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.3rem;
+}
+
+.modal_subtitle {
+  font-size: 1rem;
+  color: var(--blue-200);
+  font-weight: 500;
+}
+
+.close_modal_btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--gray-100);
+  font-size: 1.8rem;
+  line-height: 1;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close_modal_btn:hover {
+  background: rgba(255, 64, 0, 0.15);
+  border-color: rgba(255, 64, 0, 0.3);
+  color: #ff6b6b;
+  transform: rotate(90deg);
+}
+
+.modal_tabs {
+  display: flex;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 1rem;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.modal_tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.tab_btn {
+  background: transparent;
+  border: none;
+  color: var(--gray-200);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.tab_btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tab_btn.active {
+  color: white;
+  background: rgba(0, 204, 255, 0.15);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.15);
+}
+
+.modal_body {
+  padding: 2rem;
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.modal_body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal_body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.tab_content {
+  display: none;
+  animation: fadeInModalContent 0.3s ease-out forwards;
+}
+
+.tab_content.active {
+  display: block;
+}
+
+@keyframes fadeInModalContent {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab_content h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.tab_content p {
+  color: var(--gray-100);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Personal info grid */
+.personal_info_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.info_item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1rem;
+  color: var(--gray-200);
+}
+
+.info_item i {
+  color: var(--blue-200);
+  width: 1.2rem;
+  text-align: center;
+}
+
+.info_item a {
+  color: var(--gray-200);
+  transition: color 0.2s ease;
+}
+
+.info_item a:hover {
+  color: var(--blue-200);
+}
+
+/* Timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.2rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.timeline_item {
+  position: relative;
+}
+
+.timeline_item::before {
+  content: '';
+  position: absolute;
+  left: calc(-1.5rem - 0.15rem);
+  top: 0.5rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue-200);
+  box-shadow: 0 0 8px var(--blue-200);
+}
+
+.timeline_header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.job_title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+
+.job_date {
+  font-size: 0.95rem;
+  color: var(--orange-100);
+  font-weight: 500;
+}
+
+.job_company {
+  font-size: 1rem;
+  color: var(--gray-100);
+  font-style: italic;
+  margin-bottom: 0.8rem;
+}
+
+.job_bullets {
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.job_bullets li {
+  list-style-type: disc;
+  color: var(--gray-200);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+/* Skills Grid */
+.skills_grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skill_category h4 {
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 0.8rem;
+  border-left: 3px solid var(--blue-200);
+  padding-left: 0.6rem;
+}
+
+.skill_badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.skill_badges span {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  color: var(--gray-100);
+  transition: all 0.2s ease;
+}
+
+.skill_badges span:hover {
+  background: rgba(0, 204, 255, 0.1);
+  border-color: rgba(0, 204, 255, 0.3);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Education */
+.education_item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.edu_header {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.edu_degree {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+}
+
+.edu_date {
+  font-size: 1rem;
+  color: var(--greenYellow-100);
+  font-weight: 500;
+}
+
+.edu_major {
+  font-size: 1.05rem;
+  color: var(--gray-100);
+  margin-bottom: 0.5rem;
+}
+
+.edu_school {
+  font-size: 0.95rem;
+  color: var(--gray-200);
+}
+
+.modal_footer {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: flex-end;
+  background: rgba(10, 10, 10, 0.4);
+}
+
+.modal_download_btn {
+  background: var(--greenYellow-100);
+  color: black;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(173, 255, 47, 0.2);
+}
+
+.modal_download_btn:hover {
+  background: white;
+  color: black;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================
+            10. RESPONSIVE BREAKPOINTS
+=============================================*/
+@media (max-width: 768px) {
+  /* Layout modifications */
+  section {
+    padding: 1.5rem 1rem;
+  }
+
+  /* Arrows/lines removal to save space */
+  .hero_sec_arrow,
+  .work_sec_arrow,
+  .about_sec_arrow {
+    display: none;
+  }
+
+  /* Hero Section */
+  .hero_sec {
+    min-height: 100vh;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero_sec_content {
+    flex: 1;
+    width: 100%;
+  }
+
+  .hero_sec_title_wrapper {
+    padding: 1rem 0;
+  }
+
+  .hero_sec_title {
+    font-size: 2.6rem;
+  }
+
+  .hero_sec_greet {
+    font-size: 1.2rem;
+  }
+
+  .hero_sec_subtitle {
+    font-size: 1.2rem;
+  }
+
+  /* Shrink decorative bars on mobile to prevent horizontal overflow */
+  .hero_sec_design_top,
+  .hero_sec_design_bottom {
+    padding: 0;
+  }
+
+  .first_row > div:nth-child(1) { width: 45vw; }
+  .hero_sec_design_bottom > .first_row > div:nth-child(1) { width: 55vw; }
+  .first_row > div:nth-child(2) { width: 15vw; }
+  .second_row > div:nth-child(1) { width: 60vw; }
+  .third_row > div:nth-child(1) { width: 25vw; }
+  .third_row > div:nth-child(4) { width: 35vw; }
+
+  /* Work Section */
+  .work_sec_main {
+    width: 100%;
+  }
+
+  .work_sec_content {
+    width: 100%;
+    padding: 0;
+  }
+
+  .work-1 > span,
+  .work-2 > span {
+    font-size: 1.35rem;
+    display: block;
+    margin-top: 1rem;
+  }
+  
+  .work_desc {
+    max-width: 100%;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .work_tags {
+    width: 100%;
+    margin: 0.8rem 0;
+    gap: 0.4rem;
+  }
+
+  .work_tags > span {
+    font-size: 0.85rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  /* Mobile Inline Work Cards (Replacing hover overlay) */
+  .work-1-img,
+  .work-2-img {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: 180px;
+    z-index: 1;
+    opacity: 1 !important;
+    scale: 1 !important;
+    filter: brightness(0.85) blur(0px) !important;
+    display: block;
+    object-fit: cover;
+    border-radius: 0.8rem;
+    margin-top: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Clients Section */
+  .clients_sec {
+    gap: 1.5rem;
+  }
+
+  .clients_logo img {
+    height: 4.5rem;
+    filter: grayscale(40%) brightness(0.9);
+  }
+
+  .caraousal_track {
+    gap: 1.2rem;
+  }
+
+  /* About Section */
+  .about_sec_main {
+    width: 100%;
+  }
+
+  .about_content {
+    width: 100%;
+    padding: 1.2rem;
+    font-size: 1.1rem;
+  }
+
+  .about_content_core {
+    font-size: 1.2rem;
+  }
+
+  .list_tech {
+    font-size: 0.95rem;
+    margin-left: 0.2rem;
+  }
+
+  /* Footer Action layout */
+  .end_actions {
+    gap: 2.5rem;
+  }
+
+  .download > a > i,
+  .resume_btn {
+    font-size: 1.8rem;
+  }
+
+  .down_btn,
+  .view_btn_lbl {
+    font-size: 0.95rem;
+  }
+
+  /* Modal responsive adjust */
+  dialog#resumeModal {
+    width: 95%;
+    max-height: 90vh;
+  }
+  .modal_container {
+    height: 90vh;
+    max-height: 90vh;
+  }
+  .modal_header {
+    padding: 1.2rem;
+  }
+  .modal_header_title h2 {
+    font-size: 1.5rem;
+  }
+  .modal_subtitle {
+    font-size: 0.85rem;
+  }
+  .close_modal_btn {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.5rem;
+  }
+  .modal_body {
+    padding: 1.2rem;
+  }
+  .timeline_header {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .job_title {
+    font-size: 1.1rem;
+  }
+  .personal_info_grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+}
+
